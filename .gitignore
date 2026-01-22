@@ -141,3 +141,8 @@ dist/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Claude Code and specify framework
+.claude/
+.specify/
+CLAUDE.md
