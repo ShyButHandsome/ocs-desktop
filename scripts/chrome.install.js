@@ -58,18 +58,16 @@ function verifyChromeArchitecture() {
 
 	// 平台名称映射（检测值 -> 期望值）
 	const platformAliasMap = {
-		'mac': 'mac',      // mac-x64 下载的目录名是 mac
-		'mac_arm': 'mac_arm',
-		'win64': 'win64',
-		'linux': 'linux'
+		mac: 'mac', // mac-x64 下载的目录名是 mac
+		mac_arm: 'mac_arm',
+		win64: 'win64',
+		linux: 'linux'
 	};
 
 	const normalizedActual = platformAliasMap[actualPlatform] || actualPlatform;
 
 	if (normalizedActual !== expectedBrowserPlatform) {
-		throw new Error(
-			`Chrome 架构不匹配! 期望: ${expectedBrowserPlatform}, 实际: ${actualPlatform}`
-		);
+		throw new Error(`Chrome 架构不匹配! 期望: ${expectedBrowserPlatform}, 实际: ${actualPlatform}`);
 	}
 
 	console.log('✅ Chrome 架构验证通过');
@@ -99,9 +97,7 @@ function pack() {
 
 	console.log(`打包 Chrome 到: ${targetDir}`);
 
-	return src('../.chrome-temp/chrome/**/*')
-		.pipe(zip('chrome.zip'))
-		.pipe(dest(targetDir));
+	return src('../.chrome-temp/chrome/**/*').pipe(zip('chrome.zip')).pipe(dest(targetDir));
 }
 
 exports.default = series(downloadChrome, verifyChromeArchitecture, pack);

@@ -129,6 +129,7 @@ export async function startupServer() {
 			resolve();
 		});
 
+		// eslint-disable-next-line no-undef
 		server.on('error', (err: NodeJS.ErrnoException) => {
 			if (err.code === 'EADDRINUSE') {
 				logger.error(`端口 ${store.store.server.port} 已被占用，服务启动失败`);

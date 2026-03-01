@@ -16,7 +16,7 @@
 		"dev:common": "pnpm --filter @ocs-desktop/common tsc",
 		"dev:app": "pnpm --filter @ocs-desktop/common tsc && pnpm --filter @ocs-desktop/app dev",
 		"dev:web": "pnpm --filter @ocs-desktop/common tsc && pnpm --filter @ocs-desktop/web dev",
-		"dev": "echo '用法：\\n  pnpm dev:web - 启动 Web 开发服务器\\n  pnpm dev:app - 启动 Electron 主进程\\n\\n请分别在两个终端中运行这两个命令。'"
+		"dev": "concurrently --kill-others-on-fail 'pnpm --filter @ocs-desktop/common tsc' 'pnpm --filter @ocs-desktop/web dev' 'pnpm --filter @ocs-desktop/app dev'"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.0.0",
@@ -27,6 +27,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.19.0",
 		"@typescript-eslint/parser": "^5.19.0",
 		"browser-env": "^3.3.0",
+		"concurrently": "^9.2.1",
 		"del": "^6.0.0",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.5.0",

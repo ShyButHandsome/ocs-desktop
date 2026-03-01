@@ -30,26 +30,47 @@
 			<div class="browser-info-card">
 				<div class="browser-info-header">
 					<div class="browser-icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-							<circle cx="12" cy="12" r="10"/>
-							<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-							<path d="M2 12h20"/>
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+						>
+							<circle
+								cx="12"
+								cy="12"
+								r="10"
+							/>
+							<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+							<path d="M2 12h20" />
 						</svg>
 					</div>
 					<div class="browser-info-content">
 						<div class="browser-name">
 							<span class="label">当前浏览器</span>
-							<span id="browser-name" class="value">...</span>
+							<span
+								id="browser-name"
+								class="value"
+								>...</span
+							>
 						</div>
 						<div class="browser-meta">
 							<span class="meta-item">
 								<span class="meta-label">标签</span>
-								<span id="browser-tags" class="meta-value">...</span>
+								<span
+									id="browser-tags"
+									class="meta-value"
+									>...</span
+								>
 							</span>
 							<span class="meta-divider"></span>
 							<span class="meta-item">
 								<span class="meta-label">备注</span>
-								<span id="browser-notes" class="meta-value">...</span>
+								<span
+									id="browser-notes"
+									class="meta-value"
+									>...</span
+								>
 							</span>
 						</div>
 					</div>
@@ -57,8 +78,13 @@
 						class="action-btn"
 						@click="openInApp"
 					>
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
 						</svg>
 						<span>在软件中显示</span>
 					</button>
@@ -72,9 +98,18 @@
 					:class="{ warn: state.warn }"
 				>
 					<div class="tip-icon">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<circle cx="12" cy="12" r="10"/>
-							<path d="M12 16v-4M12 8h.01"/>
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<circle
+								cx="12"
+								cy="12"
+								r="10"
+							/>
+							<path d="M12 16v-4M12 8h.01" />
 						</svg>
 					</div>
 					<div class="tip-content">
@@ -115,8 +150,13 @@
 					>
 						<div class="group-header">
 							<div class="group-icon">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
 								</svg>
 							</div>
 							<h2 class="group-title">{{ item.group }}</h2>
@@ -125,8 +165,8 @@
 						<div class="group-items">
 							<a
 								v-for="(bookmark, idx) of item.values"
-								:key="idx"
 								v-show="bookmark && bookmark.name"
+								:key="idx"
 								:href="bookmark?.url"
 								target="_blank"
 								class="bookmark-item"
@@ -197,9 +237,15 @@ onMounted(async () => {
 		if (nameEl && tagsEl && notesEl && dataTextContent) {
 			const { name = '', tags = [], notes = '' } = JSON.parse(dataTextContent || '{}');
 			nameEl.innerHTML = name || '未知名称';
-			tagsEl.innerHTML = tags.map(
-				(t) => `<span style="background: linear-gradient(135deg, ${t.color}, ${adjustColor(t.color, -20)});" class="browser-tag">${t.name}</span>`
-			).join('');
+			tagsEl.innerHTML = tags
+				.map(
+					(t) =>
+						`<span style="background: linear-gradient(135deg, ${t.color}, ${adjustColor(
+							t.color,
+							-20
+						)});" class="browser-tag">${t.name}</span>`
+				)
+				.join('');
 			notesEl.innerHTML = notes || '未知';
 		}
 	}, 500);
@@ -209,8 +255,8 @@ function adjustColor(hex: string, percent: number): string {
 	const num = parseInt(hex.replace('#', ''), 16);
 	const amt = Math.round(2.55 * percent);
 	const R = Math.min(255, Math.max(0, (num >> 16) + amt));
-	const G = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amt));
-	const B = Math.min(255, Math.max(0, (num & 0x0000FF) + amt));
+	const G = Math.min(255, Math.max(0, ((num >> 8) & 0x00ff) + amt));
+	const B = Math.min(255, Math.max(0, (num & 0x0000ff) + amt));
 	return `#${(0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1)}`;
 }
 
@@ -231,7 +277,7 @@ function openInApp() {
 	font-size: 12px;
 	font-weight: 500;
 	margin: 2px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 </style>
 
@@ -262,8 +308,7 @@ function openInApp() {
 .bg-mesh {
 	position: fixed;
 	inset: 0;
-	background:
-		radial-gradient(ellipse 80% 50% at 20% -20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+	background: radial-gradient(ellipse 80% 50% at 20% -20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
 		radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
 		radial-gradient(ellipse 40% 60% at 50% 50%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
 	pointer-events: none;
@@ -308,7 +353,9 @@ function openInApp() {
 }
 
 @keyframes spin {
-	to { transform: rotate(360deg); }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .loading-tip {
@@ -521,8 +568,15 @@ function openInApp() {
 }
 
 @keyframes pulse {
-	0%, 100% { opacity: 1; transform: scale(1); }
-	50% { opacity: 0.5; transform: scale(0.9); }
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.5;
+		transform: scale(0.9);
+	}
 }
 
 // 页面标题
@@ -747,8 +801,7 @@ body:not([arco-theme='dark']) & {
 	}
 
 	.bg-mesh {
-		background:
-			radial-gradient(ellipse 80% 50% at 20% -20%, rgba(120, 119, 198, 0.08) 0%, transparent 50%),
+		background: radial-gradient(ellipse 80% 50% at 20% -20%, rgba(120, 119, 198, 0.08) 0%, transparent 50%),
 			radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
 			radial-gradient(ellipse 40% 60% at 50% 50%, rgba(34, 211, 238, 0.04) 0%, transparent 50%);
 	}
